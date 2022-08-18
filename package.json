@@ -10,10 +10,15 @@
   "author": "Anilesh Mathur",
   "license": "ISC",
   "dependencies": {
+    "connect-mongo": "^2.0.3",
     "cookie-parser": "^1.4.6",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "express-ejs-layouts": "^2.5.1",
-    "mongoose": "^6.5.2"
+    "express-session": "^1.17.3",
+    "install": "^0.13.0",
+    "mongoose": "^6.5.2",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0"
   }
 }
