@@ -2,10 +2,13 @@
 
 
 module.exports.profile=function(req,res){
-    //there is some problem 
+    User.findById(req.params.id,function(err,user){
+        //there is some problem 
     return res.render('user_profile',{
-        title:"user"
+        title:"User Profile",
+        profile_user:user
     });
+    })
 }
 
 // Render the sign in page
@@ -21,6 +24,16 @@ module.exports.signIn=function(req,res){
     })
 }
 
+module.exports.update=function(req,res){
+    if(req.user.id==req.params.id){
+        //we write at the place of req.body as well {name:req.body.name,eamil:req.body.email}
+        User.findByIdAndUpdate(req.params.id,req.body,function(err,user){
+            return res.redirect('back');
+        });
+    }else{
+        return res.status(401).send('Unauthorized');
+    }
+}
 //Render the sign up page
 
 module.exports.signUp=function(req,res){
