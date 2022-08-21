@@ -1,16 +1,16 @@
    <link rel="stylesheet" href="/css/profile.css">
-<h1>
-    wow you are also here in user
-</h1>
+   <!--it not directly avilable so go in the index.js and avilable uploads-->
+<img src="<%=user.avatar%>" alt="<%=user.name%>" width="100">
 
 
 
 
 <%if(user.id==profile_user.id){%> 
     <!--if user mateches then show the form -->
-    <form action="/users/update/<%=profile_user.id%>" method="POST">
+    <form action="/users/update/<%=profile_user.id%>" enctype="multipart/form-data" method="POST">
         <input type="text" name="name" placeholder="Your name" value="<%=profile_user.name%>" required>
         <input type="email" name="email" placeholder="Your email" value="<%=profile_user.email%>" required>
+        <input type="file" name="avatar" placeholder=" profile Picture">
         <input type="submit" value="update">
     </form>
     <%}else{%>

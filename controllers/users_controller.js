@@ -1,4 +1,6 @@
  const User =require('../models/user');
+ const fs=require('fs');
+ const path =require('path');
 
 
 module.exports.profile=function(req,res){
@@ -24,15 +26,49 @@ module.exports.signIn=function(req,res){
     })
 }
 
-module.exports.update=function(req,res){
+module.exports.update=async function(req,res){
+    // if(req.user.id==req.params.id){
+    //     //we write at the place of req.body as well {name:req.body.name,eamil:req.body.email}
+    //     User.findByIdAndUpdate(req.params.id,req.body,function(err,user){
+    //         return res.redirect('back');
+    //     });
+    // }else{
+    //     return res.status(401).send('Unauthorized');
+    // }
     if(req.user.id==req.params.id){
-        //we write at the place of req.body as well {name:req.body.name,eamil:req.body.email}
-        User.findByIdAndUpdate(req.params.id,req.body,function(err,user){
+        try{
+            let user=await User.findById(req.params.id);
+            User.uploadedAvatar(req,res,function(err){
+                if(err){
+                    console.log('error in multer',err);
+                    return ;
+                }
+                //multer use bocs it will not save bocs it is multi type d=so for that we use multer
+                user.name=req.body.name;
+                user.email=req.body.email;
+                //bocs avtar is not required so it will cahnge or update t=when their is file
+                if(req.file){
+                    if(user.avatar){
+                        fs.unlinkSync(path.join(__dirname , '..'  ,user.avatar))
+                    }
+                    // this is saving the path of the uploded file into the avatar field in the user
+                    user.avatar=User.avatarPath + '/' + req.file.filename;
+                }
+                user.save();
+                return res.redirect('back');
+            })
+
+        }catch(err){
+            req.flash('error in the update',err);
             return res.redirect('back');
-        });
+        }
+
+
     }else{
+        req.flash('error','Unauthorized');
         return res.status(401).send('Unauthorized');
     }
+
 }
 //Render the sign up page
 
