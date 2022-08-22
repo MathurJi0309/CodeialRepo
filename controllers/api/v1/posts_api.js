@@ -1,6 +1,6 @@
 const Post=require('../../../models/post')
 const Comment=require('../../../models/comment')
-
+const passport=require('passport');
 
 module.exports.index =async function(req,res){
     //we copied from the home_controller module.exports.home=async function(req,res) 
@@ -39,7 +39,6 @@ module.exports.destroy=async function(req,res){
 
     }catch{
         // req.flash('error here in destory post controller',err);
-        console.log('********',err)
         return res.json(500,{
             message:"internal server error "
         })
