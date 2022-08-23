@@ -22,7 +22,13 @@ const userSchema=new mongoose.Schema({
     //we tell field where the path will store bocs database not store the file jsut store the path of the file  
     avatar:{
         type: String
-    }
+    },
+    friendships:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'Friendship'
+        }
+    ]
 
 },{
     timestamps:true

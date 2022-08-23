@@ -3,7 +3,7 @@ const Post = require('../models/post');
 const commentsMailer=require('../mailers/comments_mailer')
 const queue=require('../config/kue');
 const commentEmailWorker=require('../workers/comment_email_worker');
-
+const Like=require('../models/like');
 module.exports.create =async function(req, res){
     try{
         let post =await Post.findById(req.body.post);
@@ -35,20 +35,34 @@ module.exports.create =async function(req, res){
         }
     }
 
-module.exports.destroy=function(req,res){
-    Comment.findById(req.params.id,function(err,comment){
-        console.log(req.user);
-        if(err){
-            console.log(err,'probelm in destroy of comment ')
-        }
+module.exports.destroy=async function(req,res){
+    try{
+        let comment =await Comment.findById(req.params.id);
         if(comment.user == req.user.id){
             let postId=comment.post;
             comment.remove();
-            Post.findByIdAndUpdate(postId,{$pull:{comments:req.params.id}},function(err,post){
-                return res.redirect('back');
-            })
+            let post =Post.findByIdAndUpdate(postId,{$pull:{comments:req.params.id}});
+            // CHANGE :: destory the assocaited likes for this comment 
+            await Like.deleteMany({likeable:comment._id,onModel:'Comment'});
+
+
+            if(req.xhr){
+                return res.json(200,{
+                    message:'Post deleted',
+                    data:{
+                        comment_id:req.params.id
+                    }
+                });
+            }
+
+            req.flash('success','Comment deleted!');
+            return redirect('back');
         }else{
+            req.flash('error','Unauthorized');
             return res.redirect('back');
         }
-    })
+    }catch(err){
+        req.flash('error',err);
+        return ;
+    }
 }

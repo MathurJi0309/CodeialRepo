@@ -45,8 +45,14 @@ try{
         path:'comments',
         populate:{
             path:'user'
+        },
+        //CHANGE :: populate the likes of each post and Commnet
+        populate:{
+            path:'likes'
         }
-    });
+    }).populate('likes');
+
+    
        let users=await User.find({});
        return res.render('home',{
         title:"Codeial | home",
