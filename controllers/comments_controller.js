@@ -1,46 +1,39 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
-const commentsMailer = require('../mailers/comments_mailer');
-module.exports.create = async function(req, res){
+const commentsMailer=require('../mailers/comments_mailer')
+const queue=require('../config/kue');
+const commentEmailWorker=require('../workers/comment_email_worker');
 
+module.exports.create =async function(req, res){
     try{
-        let post = await Post.findById(req.body.post);
+        let post =await Post.findById(req.body.post);
+
 
         if (post){
             let comment = await Comment.create({
                 content: req.body.content,
                 post: req.body.post,
-                user: req.user._id
+                user:req.user._id,
             });
-
-            post.comments.push(comment);
-            post.save();
-            
-            comment = await comment.populate('user', 'name email').execPopulate();
-            commentsMailer.newComment(comment);
-            if (req.xhr){
+                console.log(post.comments);
+                post.comments.push(comment);
                 
-    
-                return res.status(200).json({
-                    data: {
-                        comment: comment
-                    },
-                    message: "Post created!"
-                });
-            }
-
-
-            req.flash('success', 'Comment published!');
-
-            res.redirect('/');
+                post.save();
+                comment=await comment.populate('user');
+                // commentsMailer.newComment(comment);
+                let job=queue.create('emails',comment).save(function(err){
+                    if(err){
+                        console.log('error in sending to the queue',err);
+                        return;
+                    }
+                    console.log('job enqueued',job.id);
+                })
+                return res.redirect('/');
+            };
+        }catch(err){
+            console.log('error in the create comment ',err);
         }
-    }catch(err){
-        req.flash('error', err);
-        return;
     }
-    
-}
-
 
 module.exports.destroy=function(req,res){
     Comment.findById(req.params.id,function(err,comment){
