@@ -1,0 +1,83 @@
+[33mcommit 921cd0160be1bf560101ce9dc720c84797bb6d74[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: MathurJi <anileshjjssacademy84@gmail.com>
+Date:   Tue Aug 23 23:30:49 2022 +0530
+
+    likes
+
+[33mcommit c413910d85488923ce196cd59293e60c0da58723[m
+Author: MathurJi <anileshjjssacademy84@gmail.com>
+Date:   Tue Aug 23 15:15:44 2022 +0530
+
+    Parallel Jobs + Mailer
+
+[33mcommit fb7f117083f469c6deba5d2faf12457c0be6f500[m
+Author: MathurJi <anileshjjssacademy84@gmail.com>
+Date:   Mon Aug 22 21:47:25 2022 +0530
+
+    now add mailers
+
+[33mcommit 165d1d8efef7ce1a6d5db3a7b5a6095b0e0c19ff[m
+Author: MathurJi <anileshjjssacademy84@gmail.com>
+Date:   Mon Aug 22 17:21:36 2022 +0530
+
+    add the google authentication
+
+[33mcommit bcac37a1468de16a635b9a94fcf8955735003056[m
+Author: MathurJi <anileshjjssacademy84@gmail.com>
+Date:   Sun Aug 21 18:25:03 2022 +0530
+
+    set API and JWT authentication
+
+[33mcommit 0a72f63051385bd6f683de5b7888ced4a3f055c5[m
+Author: MathurJi <anileshjjssacademy84@gmail.com>
+Date:   Sun Aug 21 14:21:40 2022 +0530
+
+    we satup the multer for the profile picture setup
+
+[33mcommit d01fff2848933ac5d38cfa954c80b42ee10a1bc0[m
+Author: MathurJi <anileshjjssacademy84@gmail.com>
+Date:   Sat Aug 20 23:08:03 2022 +0530
+
+    ajax intro
+
+[33mcommit d297ca41bad2775ee5bd25abbcd0bf21447526d6[m
+Author: MathurJi <anileshjjssacademy84@gmail.com>
+Date:   Sat Aug 20 01:38:28 2022 +0530
+
+    add noty style and also make it more intractive
+
+[33mcommit 218fdacc10932994fc6b2b87f926c77c67cd6000[m
+Author: MathurJi <anileshjjssacademy84@gmail.com>
+Date:   Fri Aug 19 21:51:29 2022 +0530
+
+    we setup the post and comment and as well delete theem
+
+[33mcommit 6ae6883019f9798c1ccd91e3c6c5333b008f2407[m
+Author: MathurJi <anileshjjssacademy84@gmail.com>
+Date:   Fri Aug 19 10:00:05 2022 +0530
+
+    create comment for social media
+
+[33mcommit a98e48ed0dc646168291b8b17928828714a0fb03[m
+Author: MathurJi <anileshjjssacademy84@gmail.com>
+Date:   Thu Aug 18 22:23:23 2022 +0530
+
+    sass will be introduce
+
+[33mcommit 61da7b10439c5d3abf3d831ce1e26af1c0416a80[m
+Author: MathurJi <anileshjjssacademy84@gmail.com>
+Date:   Thu Aug 18 21:07:34 2022 +0530
+
+    setup till to sign out
+
+[33mcommit ebe5bdeeff8812c27cd99fc159079ce2cf8b9aa4[m
+Author: MathurJi <anileshjjssacademy84@gmail.com>
+Date:   Thu Aug 11 23:44:26 2022 +0530
+
+    setup sign-up page
+
+[33mcommit 1930b373b67b19195a6fd7bfb500173e434ee744[m
+Author: MathurJi <anileshjjssacademy84@gmail.com>
+Date:   Wed Aug 10 11:24:34 2022 +0530
+
+    stup our express layouts and partials
